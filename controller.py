@@ -46,12 +46,9 @@ def start_app():
                     view.show_message(text.delete_contact_successful(name))
 
             case 8:
-                phonebook_tmp = deepcopy(model.phone_book.phone_book)
-                model.phone_book.open_phone_book()
-                if phonebook_tmp != model.phone_book.phone_book:
+                if model.phone_book.first_phone_book != model.phone_book.phone_book:
                     user_choice = view.show_exit_menu()
                     if user_choice == 1:
-                        model.phone_book.phone_book = phonebook_tmp
                         model.phone_book.save_phone_book()
                         view.show_message(text.phone_book_saved_successful)
                 break

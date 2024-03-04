@@ -1,9 +1,9 @@
-# phone_book = {}
-# path = 'phonebook.txt'
-# SEPARATOR = ';'
+from copy import deepcopy
+
 class Phone_book:
     def __init__(self, path: str, separator: str):
         self.phone_book = {}
+        self.first_phone_book = {}
         self.path = path
         self.separator = separator
 
@@ -12,6 +12,7 @@ class Phone_book:
             data = file.readlines()
         for u_id, contact in enumerate(data, 1):
             self.phone_book[u_id] = contact.strip().split(self.separator)
+        self.first_phone_book = deepcopy(self.phone_book)
 
     def save_phone_book(self):
         data = []
