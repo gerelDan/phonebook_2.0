@@ -50,11 +50,8 @@ def start_app():
                 model.open_phone_book()
                 if phonebook_tmp != model.phone_book:
                     user_choice = view.show_exit_menu()
-                    match user_choice:
-                        case 1:
-                            model.phone_book = phonebook_tmp
-                            model.save_phone_book()
-                            view.show_message(text.phone_book_saved_successful)
-                            break
-                        case 2:
-                            break
+                    if user_choice == 1:
+                        model.phone_book = phonebook_tmp
+                        model.save_phone_book()
+                        view.show_message(text.phone_book_saved_successful)
+                break

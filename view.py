@@ -17,10 +17,23 @@ def show_main_menu() -> int:
 
 def show_contacts(phone_book: dict[int, list[str]], error_message: str):
     if phone_book:
-        print('\n' + THEME * 71)
+        max_len_name = 3 # Длина заголовка "Имя"
+        max_len_phone = 7 # Длина заголовка "Телефон"
+        max_len_comment = 11 # Длина заголовка "Комментарий"
+        for value in phone_book.values():
+            if len(value[0]) > max_len_name:
+                max_len_name = len(value[0])
+            if len(value[1]) > max_len_phone:
+                max_len_phone = len(value[1])
+            if len(value[2]) > max_len_comment:
+                max_len_comment = len(value[2]) 
+        len_theme = 11 + max_len_comment + max_len_phone + max_len_name
+        print('\n' + THEME * len_theme)
+        print(f'{"ID":>3}. {"Имя":<{max_len_name}} | {"Телефон":<{max_len_phone}} | {"Комментарий":<{max_len_comment}}')
+        print(THEME * len_theme)
         for u_id, contact in phone_book.items():
-            print(f'{u_id:>3}. {contact[0]:<20} | {contact[1]:<20} | {contact[2]:<20}')
-        print(THEME * 71 + '\n')
+            print(f'{u_id:>3}. {contact[0]:<{max_len_name}} | {contact[1]:<{max_len_phone}} | {contact[2]:<{max_len_comment}}')
+        print(THEME * len_theme + '\n')
     else:
         show_message(error_message)
 
